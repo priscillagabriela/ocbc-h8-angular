@@ -1,0 +1,11 @@
+header {
+    background-image: url("/assets/img/world3.png");
+    background-position: right center; 
+    background-repeat: no-repeat; 
+    background-size: 750px 500px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
