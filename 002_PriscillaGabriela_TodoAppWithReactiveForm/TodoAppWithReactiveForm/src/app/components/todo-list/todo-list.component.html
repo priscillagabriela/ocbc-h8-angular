@@ -1,0 +1,77 @@
+<app-add-todo-form
+(newTodoEvent)="addTodo($event)"
+>
+</app-add-todo-form>
+<!-- <app-edit-todo-form
+(editTodoEvent)="editTodo($event)"
+>
+</app-edit-todo-form> -->
+<div style="margin: 50px 0 50px 0;width:100%">
+    <div style="text-align: center"><h4>Not completed</h4></div>
+    <ol [hidden]="isAppear" *ngFor="let todo of todos let i = index;" class="list-group">
+        <li *ngIf="todo.completed === false" class="list-group-item d-flex justify-content-between align-items-start"> 
+            <div [hidden]="isAppear" class="ms-3 me-auto">
+                <div class="content {{(todo.completed ? 'done' : '')}}">
+                    {{i+1}}. {{ todo.content }}
+                </div>
+            </div>
+            <!-- <div [hidden]="isHidden" class="ms-3 me-auto">
+                <input type="text" class="content {{(todo.completed ? 'done' : '')}}" value="{{i+1}}. {{ todo.content }}" name="inputTodo" [(ngModel)]="inputTodo">
+            </div>
+            <button [hidden]="isHidden" class="btn btn-success btn-sm completed" (click)="toggleDoneEdit(i)">
+                <i class="bi bi-check-circle"></i>
+            </button> -->
+            <button [hidden]="isAppear" class="btn btn-success btn-sm completed" (click)="toggleDone(i)">
+                <i class="bi bi-check-circle"></i>
+            </button>
+    
+            <button [disabled]="isDisabled" class="btn btn-warning btn-sm" (click)="editTodo(i)">
+                <i class="bi bi-pencil-square"></i>
+            </button>
+            <button [disabled]="isDisabled" class="btn btn-danger btn-sm" (click)="deleteTodo(i)">
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </li>
+      </ol>
+</div>
+
+<form [formGroup]="editData" (ngSubmit)="handleEditForm()">
+<ol [hidden]="isHidden" class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div [hidden]="isHidden" class="ms-3 me-auto">
+            <input type="text" name="inputTodo" id="editInputTodo" formControlName="editInputTodo" class="form-control" pattern="[a-zA-Z ]*" (input)="handleEdit()" [(ngModel)]="inputTodo">
+            <div class="invalid-errors" *ngIf="editInputTodo?.invalid && isNotFirst">
+                <span *ngIf="editInputTodo?.errors?.required">Input is required</span>
+                <span *ngIf="editInputTodo?.errors?.pattern">Input must be alphabetical character</span>
+            </div>
+        </div>
+        <button [hidden]="isHidden" class="btn btn-success btn-sm completed" (click)="toggleDoneEdit()" [disabled]="!editData.valid">
+            <i class="bi bi-check-circle"></i>
+        </button>
+    </li>
+</ol>
+</form>
+
+<div [hidden]="isAppear" style="margin: 50px 0 50px 0;width:100%">
+    <div style="text-align: center"><h4>Completed</h4></div>
+    <ol *ngFor="let todo of todos let i = index;" class="list-group">
+        <li *ngIf="todo.completed === true" class="list-group-item d-flex justify-content-between align-items-start"> 
+            <div [hidden]="isAppear" class="ms-3 me-auto">
+                <div class="content {{(todo.completed ? 'done' : '')}}">
+                    {{i+1}}. {{ todo.content }}
+                </div>
+            </div>
+            <!-- <div [hidden]="isHidden" class="ms-3 me-auto">
+                <input type="text" class="content {{(todo.completed ? 'done' : '')}}" value="{{i+1}}. {{ todo.content }}" name="inputTodo" [(ngModel)]="inputTodo">
+            </div>
+            <button [hidden]="isHidden" class="btn btn-success btn-sm completed" (click)="toggleDoneEdit(i)">
+                <i class="bi bi-check-circle"></i>
+            </button> -->
+            <button [disabled]="isDisabled" class="btn btn-danger btn-sm" (click)="deleteTodo(i)">
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </li>
+      </ol>
+</div>
+
+  
