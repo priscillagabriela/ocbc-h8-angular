@@ -1,0 +1,28 @@
+<form [formGroup]="addData" (ngSubmit)="handleAddForm()">
+    <div class="input-group mb-3">
+        <div class="form-group">
+            <input 
+            type="text"
+            name="inputTodo"
+            id="addInputTodo"
+            formControlName="addInputTodo"
+            placeholder="Enter todo..."
+            class="form-control"
+            pattern="[a-zA-Z ]*"
+            (input)="handleInput()"
+            [(ngModel)]="inputTodo">
+            <div class="invalid-errors" *ngIf="addInputTodo?.invalid && isNotFirst">
+                <span *ngIf="addInputTodo?.errors?.required">Input is required</span>
+                <span *ngIf="addInputTodo?.errors?.pattern">Input must be alphabetical character</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input 
+            type="submit"
+            value="Add Todo"
+            class="btn btn-primary"
+            [disabled]="!addData.valid"
+            (click)="addTodo()">
+        </div>
+    </div>
+</form>
