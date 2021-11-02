@@ -1,0 +1,12 @@
+<app-edit-todo-form [todos]="todos">
+    <ol *ngFor="let todo of todos let i = index;" class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div [hidden]="isHidden" class="ms-3 me-auto">
+                <input type="text" class="content {{(todo.completed ? 'done' : '')}}" value="{{i+1}}. {{ todo.content }}" name="inputTodo" [(ngModel)]="inputTodo">
+            </div>
+            <button [hidden]="isHidden" class="btn btn-success btn-sm completed" (click)="editTodo(i)">
+                <i class="bi bi-check-circle"></i>
+            </button>        
+        </li>
+      </ol>
+</app-edit-todo-form> 
