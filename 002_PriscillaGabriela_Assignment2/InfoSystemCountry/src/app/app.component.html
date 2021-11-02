@@ -1,9 +1,0 @@
-<div *ngIf="isHome">
-    <app-home [isHome]="isHome" [countriesSortArea]="countriesSortArea" [countriesSortPopulation]="countriesSortPopulation" (clickEventHandler)="changeStatus1($event)" (clickEventDetail)="changeStatus6($event)"></app-home>
-</div>
-<div *ngIf="isAllCountries">
-    <app-allcountries [isAllCountries]="isAllCountries" [countries]="countries" [length]="length" (clickEventHandler)="changeStatus2($event)" (clickEventDetail)="changeStatus3($event)"></app-allcountries>
-</div>
-<div *ngIf="isDetail">
-    <app-countrydetail [countries]="countries" [idx]="idx" [isHidden1]="isHidden1" [isHidden2]="isHidden2" [stat]="stat" (clickEventHandler)="changeStatus4($event)" (clickEventHandler2)="changeStatus5($event)" (clickEventHandler3)="backHome($event)" (clickEventHandler4)="backAllCountries($event)" ></app-countrydetail>
-</div>
